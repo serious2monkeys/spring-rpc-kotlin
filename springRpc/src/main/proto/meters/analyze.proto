@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ru.doronin.rpc.analyze";
+option java_outer_classname = "Analyze";
+
+package analyze;
+
+service SimpleAveragerService {
+    rpc calculateAverage(stream AveragingValue) returns (AveragingResult) {};
+}
+
+message AveragingValue {
+    double meter = 1;
+}
+
+message AveragingResult {
+    double resultValue = 1;
+}
+
+service SmoothingService {
+    rpc runOnlineSmoothing(stream SmoothingRequest) returns (stream SmoothingResponse) {};
+}
+
+message SmoothingRequest {
+    double rawValue = 1;
+}
+
+message SmoothingResponse {
+    double smoothValue = 1;
+}

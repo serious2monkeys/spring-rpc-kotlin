@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ru.doronin.rpc.meters";
+option java_outer_classname = "SingleMeter";
+
+package meters;
+
+service SimpleMonitoringService {
+    rpc Subscribe(SubscriptionRequest) returns (stream Meter) {};
+    rpc GetActual(ActualValueRequest) returns (Meter) {};
+}
+
+enum MessageType {
+    TEMPERATURE = 0;
+    WIND = 1;
+}
+
+message Meter {
+    MessageType type = 1;
+    double value = 2;
+}
+
+message SubscriptionRequest {
+    MessageType type = 1;
+}
+
+message ActualValueRequest {
+    MessageType type = 1;
+}

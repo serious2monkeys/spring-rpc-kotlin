@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ru.doronin.rpc.cuckoo";
+option java_outer_classname = "Cuckoo";
+
+package cuckoo;
+
+service DummyCuckooService {
+    rpc shout(ShoutRequest) returns (ShoutResponse) {};
+    rpc ask(LifePredictionRequest) returns (stream LifePredictionResponse) {};
+}
+
+message ShoutRequest {
+    string name = 1;
+    string swearing = 2;
+}
+
+message ShoutResponse {
+    string text = 1;
+}
+
+message LifePredictionRequest {
+    string name = 1;
+}
+
+message LifePredictionResponse {
+    string text = 1;
+}

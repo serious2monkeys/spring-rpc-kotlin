@@ -1,1 +1,5 @@
+rpc:
+    server:
+        port: 50051
 
+service-implementations: kotlin
